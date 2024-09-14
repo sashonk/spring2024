@@ -1,0 +1,45 @@
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: "spring-user"
+      POSTGRES_PASSWORD: "apppw"
+    ports:
+      - "7432:5432"
+    container_name: "my-db"
+    volumes:
+      - C:\WORK\spring-pg-data:/var/lib/postgresql/data
+  app:
+    image: spring-2024:latest
+    ports:
+      - "7070:8080"
+  otel-collector:
+    container_name: "my-otelcol"
+    image: otel/opentelemetry-collector-contrib:0.109.0
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
+    ports:
+      - 1888:1888 # pprof extension
+      - 8888:8888 # Prometheus metrics exposed by the Collector
+      - 8889:8889 # Prometheus exporter metrics
+      - 13133:13133 # health_check extension
+      - 55679:55679 # zpages extension
+    expose:
+      - 4318 # OTLP http receiver
+      - 4317
+    depends_on: [jaeger]
+  jaeger:
+    image: jaegertracing/all-in-one:1.60
+    container_name: "my-jaeger"
+    ports:
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+      - "16686:16686"  #Frontend
+      - "14250:14250"
+      - "14268:14268"
+      - "14269:14269"
+      - "9411:9411"
+    expose:
+      - 4318 #accept OpenTelemetry Protocol (OTLP) over HTTP
+      - 4317 #accept OpenTelemetry Protocol (OTLP) over gRPC

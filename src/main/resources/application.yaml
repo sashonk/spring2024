@@ -1,0 +1,20 @@
+otel:
+  exporter:
+    otlp:
+      endpoint: http://my-otelcol:4318
+  propagators:
+    - tracecontext
+  resource:
+    attributes:
+      deployment.environment: dev
+      service:
+        name: employee
+
+spring:
+  application:
+    name: "Spring2024Compose"
+  datasource:
+    url: "jdbc:postgresql://my-db:5432/spring2024db?username=spring-user&password=apppw"
+    username: "spring-user"
+    password: "apppw"
+    driver-class-name: org.postgresql.Driver
