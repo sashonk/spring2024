@@ -9,3 +9,5 @@ Run "docker compose up -d". When all containers got up and running, go to http:/
 <h1>Stop</h1>
 Run "docker compose down" to stop
 
+<h1>Jaeger</h1>
+Jaeger UI is available at http://localhost:16686
