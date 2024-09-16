@@ -1,17 +1,11 @@
 package ru.asocial.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.asocial.entity.Employee;
 import ru.asocial.repo.EmployeeRepo;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/employee")
@@ -33,5 +27,11 @@ public class EmployeeController {
             return result;
         }
         return Collections.emptyMap();
+    }
+
+    @GetMapping("/find")
+    public Iterable<Employee> findAll() {
+        Iterable<Employee> iter = employeeRepo.findAll();
+        return iter;
     }
 }

@@ -16,7 +16,7 @@ public class DepartmentController {
     private DepartmentRepo departmentRepo;
 
     @GetMapping("/list")
-    public List<String> listDepartments() {
+    public List<Object> listDepartments() {
         return departmentRepo.listDepartments();
     }
 

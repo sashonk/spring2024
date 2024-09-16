@@ -11,138 +11,14 @@
   <groupId>ru.asocial</groupId>
   <artifactId>Spring2024</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
   <name>Spring2024</name>
 
   <properties>
-    <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <start-class>ru.asocial.App</start-class>
   </properties>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>io.opentelemetry.instrumentation</groupId>
-        <artifactId>opentelemetry-instrumentation-bom</artifactId>
-        <version>2.6.0</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
-  <dependencies>
-    <dependency>
-      <groupId>io.opentelemetry.instrumentation</groupId>
-      <artifactId>opentelemetry-spring-boot-autoconfigure</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.opentelemetry.instrumentation</groupId>
-      <artifactId>opentelemetry-spring-boot-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jdbc</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>jakarta.persistence</groupId>
-      <artifactId>jakarta.persistence-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-      <version>42.7.4</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.17.0</version>
-    </dependency>
-  </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>repackage</id>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-            <configuration>
-              <classifier>exec</classifier>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.13.0</version>
-        <configuration>
-          <release>${maven.compiler.release}</release>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>io.fabric8</groupId>
-        <artifactId>docker-maven-plugin</artifactId>
-        <version>0.45.0</version>
-
-        <configuration>
-          <images>
-            <image>
-              <name>spring-2024</name>
-              <build>
-                <contextDir>${project.basedir}</contextDir>
-              </build>
-            </image>
-          </images>
-        </configuration>
-
-        <!-- Connect start/stop to pre- and
-             post-integration-test phase, respectively if you want to start
-             your docker containers during integration tests -->
-        <executions>
-          <execution>
-            <id>start</id>
-            <phase>pre-integration-test</phase>
-            <goals>
-              <!-- "build" should be used to create the images with the
-                   artifact -->
-              <goal>build</goal>
-              <goal>start</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>stop</id>
-            <phase>post-integration-test</phase>
-            <goals>
-              <goal>stop</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+  <modules>
+    <module>Spring2024-frontend</module>
+    <module>Spring2024-backend</module>
+  </modules>
 </project>
