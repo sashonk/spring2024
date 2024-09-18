@@ -34,4 +34,12 @@ public class EmployeeController {
         Iterable<Employee> iter = employeeRepo.findAll();
         return iter;
     }
+
+    @GetMapping("/findBy")
+    public Iterable<Employee> findByLastNameContaining(@RequestParam(name = "str") String str) {
+        if (str == null || str.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return employeeRepo.findByLastNameContaining(str);
+    }
 }
