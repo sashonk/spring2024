@@ -98,37 +98,13 @@ class App extends React.Component {
                     {/* Header */}
                     <Grid item xs={12}>
                       <Paper sx={{ p: 3, textAlign: "center" }}>
-                        <Typography variant="h4">
+                        <Typography variant="h5">
                             Employees
                         </Typography>
                       </Paper>
                     </Grid>
-                    {/* sidenav */}
-                    <Grid item xs={12} sm={4} md={3} lg={2}>
-                      <Paper sx={{ p: 2 }}>
-                        {isSmallScreen ? (
-                          <FormControl fullWidth>
-                            <Select>
-                              {filters.map((filter, index) => (
-                                <MenuItem key={index} value={filter}>
-                                  {filter}
-                                </MenuItem>
-                              ))}
-                            </Select>
-                          </FormControl>
-                        ) : (
-                          <List>
-                            {filters.map((filter, index) => (
-                              <ListItem button key={index}>
-                                <ListItemText primary={filter} />
-                              </ListItem>
-                            ))}
-                          </List>
-                        )}
-                      </Paper>
-                    </Grid>
                     {/* Main Content */}
-                    <Grid item xs={12} sm={8} md={9} lg={10}>
+                    <Grid item xs={12}>
                       <Paper sx={{ p: 2 }}>
                         <Box component='form'
                         sx={{ '& > :not(style)': { m: 1 } }}
@@ -146,18 +122,9 @@ class App extends React.Component {
                          </div>
                       </Paper>
                     </Grid>
-                    {/* Footer */}
-                    <Grid item xs={12}>
-                      <Paper sx={{ p: 2, textAlign: "center" }}>
-                        <Typography variant="body1">&copy; 2024 Kisorzhevskiy</Typography>
-                      </Paper>
-                    </Grid>
                   </Grid>
                 </Container>
              </div>
-
-
-
 
            );
     }
