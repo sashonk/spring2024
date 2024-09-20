@@ -5,9 +5,11 @@ import './App.css';
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 import React from 'react';
-import { Container, Box, Button, TextField, Grid2 as Grid,
-Typography, Paper, FormControl, Select, Menu, MenuItem,
- ListItem, ListItemText, Link, ListItemButton, List } from "@mui/material";
+import Header from './Header';
+import SideBar from './SideBar';
+import sidebarConfig from './sidebarConfig';
+
+import { Container, Grid2 as Grid, Paper, Link } from "@mui/material";
 
 const isSmallScreen = false;
 const filters = ["Employees", "Departments" ];
@@ -54,34 +56,14 @@ class Departments extends React.Component {
                 <Container maxWidth="lg">
                   <Grid container spacing={3}>
                     {/* Header */}
-                    <Grid item size={{xs: 12}}>
-                      <Paper sx={{ p: 3, textAlign: "center" }}>
-                        <Typography variant="h5">
-                            Departments
-                        </Typography>
-                      </Paper>
-                    </Grid>
+                    <Header title="DEPARTMENTS" />
                     {/* Side nav */}
-                    <Grid item size={{xs: 12, sm: 6, md:4, lg: 3}}>
-                      <Paper sx={{ p: 2 }}>
-                         <ListItem button index={1}>
-                                <Button href='/#' component={Link} >
-                                    Employees
-                                </Button >
-                         </ListItem>
-                         <ListItem button index={2}>
-                                <Button variant="outlined" href='/#departments' component={Link}  >
-                                    Departments
-                                </Button >
-                         </ListItem>
-                      </Paper>
-                    </Grid>
+					<SideBar config={sidebarConfig} activeId="deparments" />
                     {/* Main Content */}
                     <Grid item size={{xs: 12, sm: 6, md:8, lg: 9}}>
                       <Paper sx={{ p: 2 }}>
                          <div style={{height: 500}}>
                          <DataGrid
-                            keepMounted={true}
                             rows={rows}
                             columns={columns}
                             loading={this.state.dataLoading}
