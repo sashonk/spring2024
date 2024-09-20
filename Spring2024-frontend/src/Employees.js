@@ -60,7 +60,7 @@ const columns = [
 ];
 
 
-class App extends React.Component {
+class Employees extends React.Component {
 
 	constructor() {
 		super();
@@ -129,4 +129,4 @@ class App extends React.Component {
 }
 
 
-export default App;
+export default Employees;

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import Employees from './Employees';
 import Departments from './Departments';
 import reportWebVitals from './reportWebVitals';
 import {
@@ -9,14 +9,22 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+
+const employees = <Employees/>;
+const departments = <Departments/>;
+
 const router = createHashRouter([
   {
-    path: "/",
-    element: <App/>,
+	  path: "/",
+	  element: employees,
+  },
+  {
+    path: "employees",
+    element: employees,
   },
   {
       path: "departments",
-      element: <Departments/>,
+      element: departments,
   },
 ]);
 
