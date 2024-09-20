@@ -1,7 +1,5 @@
 import logo from './logo.svg';
 
-import './App.css';
-
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 import React from 'react';
