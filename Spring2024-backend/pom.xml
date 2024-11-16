@@ -14,8 +14,6 @@
   <name>Spring2024-backend</name>
 
   <properties>
-    <maven.compiler.release>17</maven.compiler.release>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <start-class>ru.asocial.App</start-class>
   </properties>
 
@@ -32,6 +30,11 @@
   </dependencyManagement>
 
   <dependencies>
+  	<dependency>
+  		<groupId>ru.asocial</groupId>
+  		<artifactId>Spring2024-api</artifactId>
+  		<version>${project.version}</version>
+  	</dependency>
     <dependency>
       <groupId>ru.asocial</groupId>
       <artifactId>Spring2024-frontend</artifactId>
@@ -72,7 +75,7 @@
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>3.17.0</version>
-    </dependency>
+    </dependency>    
   </dependencies>
 
   <build>

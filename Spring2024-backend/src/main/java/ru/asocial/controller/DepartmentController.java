@@ -1,5 +1,6 @@
 package ru.asocial.controller;
 
+import org.openapitools.api.DepartmentApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +11,7 @@ import ru.asocial.repo.DepartmentRepo;
 
 @RestController
 @RequestMapping("/api/department")
-public class DepartmentController {
+public class DepartmentController implements DepartmentApi {
 
     @Autowired
     private DepartmentRepo departmentRepo;
