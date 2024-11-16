@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.asocial.repo.DepartmentRepo;
 
-import java.util.List;
+import ru.asocial.entity.Department;
+import ru.asocial.repo.DepartmentRepo;
 
 @RestController
 @RequestMapping("/api/department")
@@ -16,9 +16,8 @@ public class DepartmentController {
     private DepartmentRepo departmentRepo;
 
     @GetMapping("/list")
-    public List<Object> listDepartments() {
-        return departmentRepo.listDepartments();
+    public Iterable<Department> listDepartments() {
+        return departmentRepo.findAll();
     }
-
 
 }

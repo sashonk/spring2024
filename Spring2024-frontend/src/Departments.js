@@ -18,7 +18,7 @@ const columns = [
       sortable: false,
       disableColumnMenu: true },
   {
-    field: 'department_name',
+    field: 'deptName',
     flex: 1.2,
     headerName: 'Department',
     width: 150,

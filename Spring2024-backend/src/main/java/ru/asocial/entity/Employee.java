@@ -1,34 +1,30 @@
 package ru.asocial.entity;
 
-import jakarta.annotation.Generated;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.time.LocalDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.Date;
-
-@Entity
 @Table(name = "employee")
 public class Employee {
 
     @Id
     private Long id;
 
-    @Column(name = "first_name")
+    @Column(value = "first_name")
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(value = "last_name")
     private String lastName;
 
-    @Column(name = "gender")
-    private String gender;
+    @Column(value = "birth_date")
+    private LocalDate birthDate;
 
-    @Column(name = "birth_date")
-    private Date birthDate;
-
-    @Column(name = "hire_date")
-    private Date hireDate;
+    @Column(value = "hire_date")
+    private LocalDate hireDate;
+    
+    @Column(value = "gender")
+    private EmployeeGender gender;
 
     public Long getId() {
         return id;
@@ -54,27 +50,19 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
-    public Date getHireDate() {
+    public LocalDate getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(Date hireDate) {
+    public void setHireDate(LocalDate hireDate) {
         this.hireDate = hireDate;
     }
 }

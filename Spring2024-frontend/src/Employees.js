@@ -6,6 +6,7 @@ import axios from 'axios';
 import React from 'react';
 import Header from './Header';
 import SideBar from './SideBar';
+import EmployeesSearchPanel from './EmployeesSearchPanel';
 import sidebarConfig from './sidebarConfig';
 
 import {
@@ -84,9 +85,18 @@ class Employees extends React.Component {
 			alert(err);
 		});
 	}
+	
+	doSetRows(rows) {
+		this.setState({rows})
+		console.log('logs were set to: ' + rows)
+	}
 
 	updateSearchText(evt) {
 		this.setState({ search: evt.target.value });
+	}
+	
+	doUpdateLoading(dataLoading) {
+		this.setState({dataLoading})
 	}
 
 	render() {
@@ -103,12 +113,7 @@ class Employees extends React.Component {
 						{/* Main Content */}
 						<Grid item size={{ xs: 12, sm: 6, md: 8, lg: 9 }}>
 							<Paper sx={{ p: 2 }}>
-								<Box component='form'
-									sx={{ '& > :not(style)': { m: 1 } }}
-								>
-									<TextField value={this.state.search} onChange={this.updateSearchText.bind(this)} id="standard-basic" label="Text" variant="standard" />
-									<Button onClick={this.doSearch.bind(this)} >Search</Button>
-								</Box >
+								<EmployeesSearchPanel updateLoading={this.doUpdateLoading.bind(this)}  setRows={this.doSetRows.bind(this)} />											
 								<div style={{ height: 500 }}>
 									<DataGrid
 										keepMounted={true}
