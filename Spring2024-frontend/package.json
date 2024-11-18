@@ -21,7 +21,9 @@
     "react-hook-form": "7.53.0",
     "react-router-dom": "6.26.2",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+	"superagent" : "10.1.1",
+	"querystring" : "0.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,5 +49,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:7070"
+  "noproxy": "http://localhost:7070"
 }

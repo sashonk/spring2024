@@ -12,22 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ru.asocial.repo.DepartmentRepo;
 
-@RestController(value = "api/v2/department")
+@RestController
+@RequestMapping("api/v2/department")
 public class DepartmentController implements DepartmentApi{
 	
     @Autowired
     private DepartmentRepo departmentRepo;
 
-	@RequestMapping(value = "/list")
+	@RequestMapping(value = "/list", produces = "application/json")
 	public ResponseEntity<List<Department>> getDepartments() {
 		Iterable<ru.asocial.entity.Department> data = departmentRepo.findAll();
 		List<Department> result = new LinkedList<>();
 		for (ru.asocial.entity.Department entity : data) {
 			Department dto = new Department();
 			dto.setId(entity.getId());
-			dto.setName(entity.getDeptName());
+			dto.setDeptName(entity.getDeptName());
+			result.add(dto);
 		}
-		
 		return ResponseEntity.ok(result);
 	}
 }

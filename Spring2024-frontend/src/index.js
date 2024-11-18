@@ -9,6 +9,16 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+XMLHttpRequest.prototype.doSetRequestHeader = XMLHttpRequest.prototype.setRequestHeader;
+XMLHttpRequest.prototype.setRequestHeader = function (name, value) {
+	if (typeof name == 'string' && name.toLowerCase().indexOf('user-agent') >= 0) {
+		console.log('Prevent setting User-Agent header on XMLHttpRequest');
+		return this.doSetRequestHeader('NoUserAgent', value);
+	}
+	else {
+		return this.doSetRequestHeader(name, value);
+	}
+}
 
 const employees = <Employees/>;
 const departments = <Departments/>;

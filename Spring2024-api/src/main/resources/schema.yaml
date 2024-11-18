@@ -5,7 +5,7 @@ info:
 servers:
   - url: http://localhost:8080
 paths:
-  /department:
+  /department/list:
     get:
       summary: Get all departments
       operationId: getDepartments
