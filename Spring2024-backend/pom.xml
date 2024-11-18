@@ -135,28 +135,20 @@
             </image>
           </images>
         </configuration>
-
-        <!-- Connect start/stop to pre- and
-             post-integration-test phase, respectively if you want to start
-             your docker containers during integration tests -->
         <executions>
           <execution>
-            <id>start</id>
-            <phase>pre-integration-test</phase>
+            <phase>install</phase>
             <goals>
-              <!-- "build" should be used to create the images with the
-                   artifact -->
               <goal>build</goal>
-              <goal>start</goal>
             </goals>
           </execution>
-          <execution>
-            <id>stop</id>
-            <phase>post-integration-test</phase>
+<!--          <execution>
+            <id>deploy</id>
+            <phase>deploy</phase>
             <goals>
-              <goal>stop</goal>
+              <goal>push</goal>
             </goals>
-          </execution>
+          </execution>-->
         </executions>
       </plugin>
     </plugins>
