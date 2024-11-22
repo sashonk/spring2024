@@ -40,22 +40,6 @@ public class EmployeeController implements EmployeeApi {
     @Autowired
     private EmployeeRepo employeeRepo;
 
-    @GetMapping("/{id}")
-    public Map<String, Object> findById(@PathVariable Long id) {
-        Optional<EmployeeEntity> optionalEmployee = employeeRepo.findById(id);
-
-        if (optionalEmployee.isPresent()) {
-            EmployeeEntity employee = optionalEmployee.get();
-            Map<String, Object> result = new HashMap<>();
-            result.put("id", employee.getId());
-            result.put("first_name", employee.getFirstName());
-            result.put("last_name", employee.getLastName());
-            // result.put("gender", employee.get)
-            return result;
-        }
-        return Collections.emptyMap();
-    }
-
     @GetMapping("/search")
     public Iterable<EmployeeEntity> search(@RequestParam(required = false, name = "id") Long id,
             @RequestParam(name = "firstName", required = false) String firstName,
