@@ -6,7 +6,7 @@ import ru.asocial.entity.DepartmentEmployee;
 
 @RestController(value = "/department_employee")
 public class DepartmentEmployeeController {
-	
+	    
 	/*
 	 * public DepartmentEmployee findByDepartmentEmployee() {
 	 * 

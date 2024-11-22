@@ -10,10 +10,17 @@ import { DateField } from '@mui/x-date-pickers/DateField';
 import { useForm, Controller } from "react-hook-form";
 import {useState} from "react";
 import axios from 'axios';
+import moment from 'moment';
+
+const startOfQ11960 = moment('1960-01-01T00:00:00.000');
+const endOfQ41962 = moment('1963-09-30T23:59:59.999');
+
+const startOfQ119602 = moment('1960-01-01T00:00:00.000');
+const endOfQ419622 = moment('1963-09-30T23:59:59.999');
 
 let EmployeesSearchPanel = function({updateLoading, setRows}) {
 
-	const { register, handleSubmit, control } = useForm();
+	const { register, handleSubmit, control, formState: { errors } } = useForm();
 	const [rows] = useState([]);
 
 	const convertObjToArray = (dataObj) => {
@@ -46,10 +53,10 @@ let EmployeesSearchPanel = function({updateLoading, setRows}) {
 
 	const onSubmit = (formDataObj) => {
 		if (formDataObj.birthDateFrom && 'toDate' in formDataObj.birthDateFrom) {
-			formDataObj.birthDateFrom = formDataObj.birthDateFrom.toDate().toISOString().slice(0, 10);
+			formDataObj.birthDateFrom = formDataObj.birthDateFrom.format('yyyy-MM-DD');
 		}
 		if (formDataObj.birthDateTo && 'toDate' in formDataObj.birthDateTo) {
-			formDataObj.birthDateTo = formDataObj.birthDateTo.toDate().toISOString().slice(0, 10);
+			formDataObj.birthDateTo = formDataObj.birthDateTo.format('yyyy-MM-DD');
 		}
 		//alert(JSON.stringify(getFormData(d)));
 		const formData = convertObjToArray(formDataObj);
@@ -71,13 +78,15 @@ let EmployeesSearchPanel = function({updateLoading, setRows}) {
 	const sx = { m: 1, width: '200px' };
 
 	return (<form onSubmit={handleSubmit(onSubmit)}>
-		<TextField  {...register("id")} label="ID" variant="standard" sx={sx} />
-		<TextField  {...register("firstName")} label="First Name" variant="standard" sx={sx} />
+		<TextField {...register("id")} label="ID" variant="standard" sx={sx} />
+		<TextField {...register("firstName")} label="First Name" variant="standard" sx={sx} />
 		<TextField {...register("lastName")} label="Last Name" variant="standard" sx={sx} />
-		<TextField {...register("gender")} label="Gender" variant="standard" sx={sx} />
+		<TextField error={errors.gender} helperText={errors.gender?.message} {...register("gender", {validate: (value) => value == 'M' || value == 'F' || 'M or F'} )} label="Gender" variant="standard" sx={sx} />
 		<Controller
 			control={control}
 			name={'birthDateFrom'}
+			defaultValue={startOfQ11960}
+			rules={{required: true}}
 			render={({ field: { onChange, onBlur, value, ref } }) => (
 				<LocalizationProvider dateAdapter={AdapterMoment}>
 					<DatePicker
@@ -85,6 +94,14 @@ let EmployeesSearchPanel = function({updateLoading, setRows}) {
 						sx={sx}
 						onChange={onChange}
 						onBlur={onBlur}
+						minDate={startOfQ11960}
+						maxDate={endOfQ41962}
+						defaultValue={startOfQ11960}
+						slotProps={{
+						  textField: {
+						    error: errors.birthDateFrom
+						  },
+						}}
 					/>
 				</LocalizationProvider>
 			)}
@@ -92,13 +109,23 @@ let EmployeesSearchPanel = function({updateLoading, setRows}) {
 		<Controller
 			control={control}
 			name={'birthDateTo'}
+			defaultValue={endOfQ41962}
+			rules={{required: true}}
 			render={({ field: { onChange, onBlur, value, ref } }) => (
-				<LocalizationProvider dateAdapter={AdapterDayjs}>
+				<LocalizationProvider dateAdapter={AdapterMoment}>
 					<DatePicker
 						label="Birth Date to"
 						sx={sx}
 						onChange={onChange}
 						onBlur={onBlur}
+						minDate={startOfQ11960}
+						maxDate={endOfQ41962}
+						defaultValue={endOfQ41962}
+						slotProps={{
+						  textField: {
+						    error: errors.birthDateTo
+						  },
+						}}
 					/>
 				</LocalizationProvider>
 			)}

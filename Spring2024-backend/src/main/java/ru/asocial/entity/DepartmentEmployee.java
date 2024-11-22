@@ -9,7 +9,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table(name = "department_employee")
 public class DepartmentEmployee {
 	
-	private AggregateReference<Employee, Long> employeeId;
+	private AggregateReference<EmployeeEntity, Long> employeeId;
 	
 	private AggregateReference<Department, String> departmentId;
 	
@@ -19,11 +19,11 @@ public class DepartmentEmployee {
 	@Column(value = "to_date")
 	private LocalDate toDate;
 
-	public AggregateReference<Employee, Long> getEmployeeId() {
+	public AggregateReference<EmployeeEntity, Long> getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(AggregateReference<Employee, Long> employeeId) {
+	public void setEmployeeId(AggregateReference<EmployeeEntity, Long> employeeId) {
 		this.employeeId = employeeId;
 	}
 

@@ -18,8 +18,61 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Department'
+  /employee:
+    post:
+      summary: Create a new employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Employee'
+      responses:
+        '201':
+          description: Created         
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+                description: The location of the newly created employee resource
+        '400':
+          description: Bad Request       
+  /employee/{employeeId}:
+    get:
+      summary: Get employee by id
+      operationId: getById
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the employee to retrieve    
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '404':
+          description: Not Found                                        
 components:
   schemas:
+    Employee:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        birthDate:
+          type: string
+          format: date
+          example: "1990-10-21"
     Department:
       type: object
       properties:
@@ -29,3 +82,4 @@ components:
           type: string
       required:
         - name
+     

@@ -6,7 +6,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table(name = "employee")
-public class Employee {
+public class EmployeeEntity {
 
     @Id
     private Long id;
@@ -25,6 +25,9 @@ public class Employee {
     
     @Column(value = "gender")
     private EmployeeGender gender;
+    
+    @Column(value = "source")
+    private String source;
 
     public Long getId() {
         return id;

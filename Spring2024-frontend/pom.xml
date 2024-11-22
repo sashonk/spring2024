@@ -87,7 +87,7 @@
 					</execution>
 					<execution>
 						<id>build</id>
-						<phase>compile</phase>
+						<phase>process-resources</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
