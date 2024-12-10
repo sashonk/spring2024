@@ -8,12 +8,12 @@ import ru.asocial.repo.EmployeeRepo;
 
 @Service
 public class EmployeeService {
-	
-	@Autowired
-	private EmployeeRepo employeeRepo;
-	
-	@Scheduled(cron = "*/5 * * * * *")
-	public void processEmployees() {
-		
-	}
+
+    @Autowired
+    private EmployeeRepo employeeRepo;
+
+    @Scheduled(cron = "*/5 * * * * *")
+    public void processEmployees() {
+
+    }
 }

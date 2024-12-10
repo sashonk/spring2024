@@ -2,10 +2,10 @@ package ru.asocial.repo;
 
 import org.springframework.stereotype.Repository;
 
-import ru.asocial.entity.Department;
+import ru.asocial.entity.DepartmentEntity;
 
 @Repository
-public interface DepartmentRepo extends org.springframework.data.repository.CrudRepository<Department, Long> {
+public interface DepartmentRepo extends org.springframework.data.repository.CrudRepository<DepartmentEntity, String> {
 
 	/*
 	 * @Autowired private NamedParameterJdbcTemplate npjt;

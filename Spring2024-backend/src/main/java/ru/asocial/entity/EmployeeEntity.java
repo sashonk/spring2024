@@ -1,33 +1,55 @@
 package ru.asocial.entity;
 
 import java.time.LocalDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
 @Table(name = "employee")
 public class EmployeeEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
 
-    @Column(value = "first_name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(value = "last_name")
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(value = "birth_date")
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @Column(value = "hire_date")
+    @Column(name = "hire_date")
     private LocalDate hireDate;
     
-    @Column(value = "gender")
-    private EmployeeGender gender;
+    @Column(name = "gender_str")
+    private String gender;
     
-    @Column(value = "source")
-    private String source;
+    @Column(name = "source")
+    private String source;      
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
 
     public Long getId() {
         return id;

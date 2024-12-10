@@ -1,5 +1,5 @@
 services:
-  db:
+  db:  
     image: postgres:latest
     environment:
       POSTGRES_USER: "spring-user"
@@ -9,10 +9,15 @@ services:
     container_name: "my-db"
     volumes:
       - C:\WORK\spring-pg-data:/var/lib/postgresql/data
+    networks:
+      - app-network
   app:
     image: spring-2024:latest
+    container_name: "employee-app"
     ports:
       - "7070:8080"
+    networks:
+      - app-network      
   otel-collector:
     container_name: "my-otelcol"
     image: otel/opentelemetry-collector-contrib:0.109.0
@@ -28,6 +33,8 @@ services:
       - 4318 # OTLP http receiver
       - 4317
     depends_on: [jaeger]
+    networks:
+      - app-network        
   jaeger:
     image: jaegertracing/all-in-one:1.60
     container_name: "my-jaeger"
@@ -43,3 +50,9 @@ services:
     expose:
       - 4318 #accept OpenTelemetry Protocol (OTLP) over HTTP
       - 4317 #accept OpenTelemetry Protocol (OTLP) over gRPC
+    networks:
+      - app-network          
+networks:
+  app-network:
+    name: app-network
+    driver: bridge

@@ -1,11 +1,10 @@
 package ru.asocial.repo;
 
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import ru.asocial.entity.DepartmentEmployee;
+import ru.asocial.entity.DepartmentEmployeeEntity;
 
-
-public interface DepartmentEmployeeRepo extends CrudRepository<DepartmentEmployee, Long>{
+@Repository
+public interface DepartmentEmployeeRepo extends org.springframework.data.repository.CrudRepository<DepartmentEmployeeEntity, String> {
 
 }

@@ -21,9 +21,9 @@ public class DepartmentController implements DepartmentApi{
 
 	@RequestMapping(value = "/list", produces = "application/json")
 	public ResponseEntity<List<Department>> getDepartments() {
-		Iterable<ru.asocial.entity.Department> data = departmentRepo.findAll();
+		Iterable<ru.asocial.entity.DepartmentEntity> data = departmentRepo.findAll();
 		List<Department> result = new LinkedList<>();
-		for (ru.asocial.entity.Department entity : data) {
+		for (ru.asocial.entity.DepartmentEntity entity : data) {
 			Department dto = new Department();
 			dto.setId(entity.getId());
 			dto.setDeptName(entity.getDeptName());
