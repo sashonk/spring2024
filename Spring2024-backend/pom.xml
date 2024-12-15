@@ -17,7 +17,7 @@
         <start-class>ru.asocial.App</start-class>
         <mapstruct.version>1.6.3</mapstruct.version>
     </properties>
-    
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -78,6 +78,10 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
         </dependency>
     </dependencies>
     <build>
