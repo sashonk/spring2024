@@ -1,11 +1,9 @@
 package ru.asocial.repo;
 
 import java.util.Collection;
-import java.util.Set;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -14,6 +12,9 @@ import ru.asocial.entity.EmployeeEntity;
 
 @Repository
 public interface EmployeeRepo extends org.springframework.data.repository.CrudRepository<EmployeeEntity, Long> {
+    
+    @Query(nativeQuery = true, value = "SELECT * FROM employee")
+    Page<EmployeeEntity> findEmployees(Pageable pageable);
 
     Iterable<EmployeeEntity> findByLastNameContaining(String str);
 
