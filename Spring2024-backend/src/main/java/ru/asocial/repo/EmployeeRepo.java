@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,9 @@ import ru.asocial.entity.EmployeeEntity;
 
 @Repository
 public interface EmployeeRepo extends org.springframework.data.repository.CrudRepository<EmployeeEntity, Long> {
+       
+    @Query(nativeQuery = true, value = "SELECT * FROM employee order by id asc offset :offset rows fetch next :limit rows only")
+    Slice<EmployeeEntity> findSome(Long offset, Long limit);
     
     @Query(nativeQuery = true, value = "SELECT * FROM employee")
     Page<EmployeeEntity> findEmployees(Pageable pageable);
